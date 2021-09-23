@@ -1,0 +1,115 @@
+*{
+    color: white;
+}
+.sign {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(33, 37, 41, 0.9);
+    position: relative;
+}
+.sign-in-up{
+    width: 500px;
+    height: 500px;
+    border-radius: 5px;
+    background-color: rgba(33, 37, 41, 1);
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+}
+
+.sign-in-up .button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.sign-in-up .button button {
+    width: 170px;
+    height: 40px;
+    background-color: transparent;
+    border: none;
+    border-radius: 40px;
+    margin: 10px 0;
+    box-shadow: 0 0 5px white;
+    position: relative;
+}
+.sign-in-up .button button .color {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    background-color: rgb(24, 26, 27);
+    border-radius: 40px;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition-duration: .4s;
+}
+.sign-in-up .button button span{
+    margin: 0;
+    padding: 0;
+}
+.sign-in-up .button button .btn-1{
+    padding-right: 20px;
+    z-index: 100;
+}
+.sign-in-up .button button .btn-2{
+    z-index: 1000;
+    padding-left: 20px!important;
+}
+.sign-in-up .signinup {
+    width: 200%;
+    transition-duration: .4s;
+}
+.sign-in-up .signinup div {
+    width: 50%;
+    float: left;
+    margin-top: 10px;
+}
+.sign-in-up .signinup > div{
+    padding: 10px 60px;
+}
+.sign-in-up .signinup form .group {
+    width: 100%;
+    height: 60px;
+    overflow: hidden;
+    /* background-color: black; */
+}
+.sign-in-up .signinup form input, .sign-in-up .signinup form button {
+    width: 100%;
+    padding: 5px 10px;
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid white;
+    z-index: 100;
+    color: black;
+}
+.sign-in-up .signinup form button{
+    border: 1px solid white;
+    font-weight: bold;
+}
+.sign-in-up .signinup form .back_input {
+    width: 100%;
+    position: relative;
+    background-color: whitesmoke;
+    height: 0;
+    top: -46px;
+    z-index: -1;
+    transition-duration: .4s;
+    margin-bottom: 34px;
+}
+input:focus {
+    outline: none!important;
+}
+.sign-in-up .signinup form input:focus .back_input {
+    height: 34px;
+}
+.left{
+    position: absolute;
+    left: 50%!important;
+}
+.content_left{
+    transform: translateX(-50%);
+}

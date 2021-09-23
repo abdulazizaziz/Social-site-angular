@@ -1,0 +1,62 @@
+<div class="sign">
+    <h1 class="text-light text-center">Social Site</h1>
+    <div class="sign-in-up">
+      <div class="button" (click)="signType()">
+        <button>
+          <span class="color" [class.left]="signup"></span>
+          <span class="btn-1">Sign in</span>
+          <span class="btn-2">Sign up</span>
+        </button>
+      </div>
+      <div class="signinup" [class.content_left]="signup">
+        <div class="signin">
+          <h2 class="text-center">Sign In</h2>
+          <form>
+              <div class="group">
+                <label for="semail">Email</label>
+                <input type="email" id="semail" placeholder="Enter your Email" autocomplete="off" #thisin (focus)="focuss(thisin)" (blur)="blurr(thisin)">
+                <div class="back_input"></div>
+              </div>
+              <div class="group">
+                <label for="spassword">Password</label>
+                <input type="password" id="spassword" placeholder="Enter your Password" autocomplete="off" #pass (focus)="focuss(pass)" (blur)="blurr(pass)">
+                <div class="back_input"></div>
+              </div>
+              <div class="group mt-4">
+                <button type="button" #signin (mouseover)="focuss(signin)" (mouseout)="Blurr(signin)">Sign In</button>
+                <div class="back_input"></div>
+              </div>
+          </form>
+        </div>
+        <div class="signup">
+          <h2 class="text-center">Sign Up</h2>
+          <form>
+            <div class="group">
+              <label for="name">Name</label>
+              <input type="name" id="name" placeholder="Enter your Name" autocomplete="off" #name (focus)="focuss(name)" (blur)="blurr(name)">
+              <div class="back_input"></div>
+            </div>
+            <div class="group">
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="Enter your Email" autocomplete="off" #email (focus)="focuss(email)" (blur)="blurr(email)">
+              <div class="back_input"></div>
+            </div>
+            <div class="group">
+              <label for="password">Password</label>
+              <input type="password" id="password" placeholder="Enter your Password" autocomplete="off" #password (focus)="focuss(password)" (blur)="blurr(password)">
+              <div class="back_input"></div>
+            </div>
+            <div class="group">
+              <label for="pass2">Confirm Password</label>
+              <input type="password" id="pass2" placeholder="Confirm Password" autocomplete="off" #pass2 (focus)="focuss(pass2)" (blur)="blurr(pass2)">
+              <div class="back_input"></div>
+            </div>
+            <div class="group mt-4">
+              <button type="button" #dign (mouseover)="focuss(dign)" (mouseout)="Blurr(dign)">Create account</button>
+              <div class="back_input"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
