@@ -1,0 +1,24 @@
+.navbar{
+    border-bottom: 2px solid darkgray;
+    position: fixed;
+    width: 100%;
+    margin-bottom: 40px;
+}
+.button{
+    margin-left: 0;
+    border-radius: 0 4px 4px 0;
+    box-shadow: none!important;
+}
+.search{
+    border-radius: 4px 0 0 4px;
+    box-shadow: none!important;
+    margin-right: 0!important;
+    border-right: none;
+}
+.search:focus{
+    border-color: #212529;
+    border-right: none;
+}
+.content{
+    padding-top: 56px!important;
+}

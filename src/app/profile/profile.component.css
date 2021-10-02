@@ -1,0 +1,50 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.profile {
+    border: 1px solid lightgray;
+}
+.profile .img {
+    width: 200px;
+    height: 200px;
+    margin: 20px auto;
+    border-radius: 100%;
+    background-position: center;
+    background-size: cover;
+    border: 3px solid white;
+    outline: 3px solid gray;
+}
+.profile .name {
+    width: 100%;
+    text-align: center;
+    font-size: 35px;
+}
+.profile .more {
+    width: 100%;
+    border-top: 1px solid lightgray;
+    padding: 10px;
+}
+.profile .more > div {
+    width: 100%;
+    border-radius: 5px;
+    background-color: lightgray;
+    padding: 10px;
+    margin-top: 10px;
+}
+.posts {
+    padding-left: 30px!important;
+}
+.posts .title {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 25px;
+    border: 1px solid lightgray;
+    border-radius: 0 0 10px 10px;
+}
+@media screen and (max-width: 991px) {
+    .posts {
+        padding: 0!important;
+    }
+}

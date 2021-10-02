@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="profile col-12 col-lg-5">
+        <div class="img" style="background-image: url('http://localhost:8000{{profile.img}}');"></div>
+        <div class="name">{{ auth.user.name }}</div>
+        <div class="about mt-2 p-3">
+            {{profile.about}}
+        </div>
+        <div class="more">
+            <h4>Detail</h4>
+            <div class="usename">
+                Username: {{ auth.user.username }}
+            </div>
+            <div class="live">
+                Live in {{ profile.live_city }}, {{ profile.live_country }}
+            </div>
+            <div class="from">
+                From {{profile.country}}
+            </div>
+            <div class="age">
+                Age {{profile.age}}
+            </div>
+            <div class="number">
+                Contact Number 0{{profile.number}}
+            </div>
+            <div class="single">
+                <span *ngIf="profile.single"> Single </span>
+                <span *ngIf="!profile.single"> Married </span>
+            </div>
+            <div class="education">
+                {{ profile.education }}
+            </div>
+            <div style="background-color: transparent; border: none; padding: 0;" *ngIf="auth.user.username == username">
+                <button class="btn btn-dark col-12">Edit Profile</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-7 posts">
+        <div class="title">
+            {{ auth.user.name }} Posts
+        </div>
+        <post></post>
+    </div>
+</div>

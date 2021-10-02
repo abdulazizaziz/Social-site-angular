@@ -1,6 +1,9 @@
 *{
     color: white;
 }
+.errors ul li{
+    color: red!important;
+}
 .sign {
     width: 100%;
     height: 100vh;
@@ -9,7 +12,7 @@
 }
 .sign-in-up{
     width: 500px;
-    height: 500px;
+    /* height: 500px; */
     border-radius: 5px;
     background-color: rgba(33, 37, 41, 1);
     margin: 0;
@@ -75,7 +78,7 @@
     width: 100%;
     height: 60px;
     overflow: hidden;
-    /* background-color: black; */
+    position: relative;
 }
 .sign-in-up .signinup form input, .sign-in-up .signinup form button {
     width: 100%;
@@ -113,3 +116,6 @@ input:focus {
 .content_left{
     transform: translateX(-50%);
 }
+
+
+

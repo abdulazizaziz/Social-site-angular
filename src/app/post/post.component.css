@@ -1,0 +1,60 @@
+.posts .post{
+    margin: 20px 0;
+    border: 1px solid lightgray;
+    border-radius: 10px 10px 0 0;
+}
+.posts .post .user {
+    width: 100%;
+    padding: 5px 10px;
+    display: flex;
+    background-color: lightgray;
+    border-radius: 10px 10px 0 0;
+}
+.posts .post .user .img{
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    background-size: cover;
+    background-position: center;
+}
+.posts .post .user .name {
+    margin-top: 5px;
+    margin-left: 20px;
+}
+.posts .post .user .name h1{
+    font-size: 25px;
+    margin: 0;
+}
+.posts .post .user .name h6 {
+    font-size: 12px;
+}
+.posts .post .article {
+    width: 100%;
+    background-color: white;
+    padding: 10px;
+}
+.posts .post .imgs {
+    width: 100%;
+}
+.posts .post .imgs > img {
+    width: 100%;
+}
+.posts .post .numberlc {
+    width: 100%;
+    display: flex;
+}
+.posts .post .numberlc > div {
+    padding: 10px 20px;
+    width: 50%;
+}
+.posts .post .likecomment {
+    width: 100%;
+    text-align: center;
+    display: flex;
+}
+.posts .post .likecomment > div {
+    width: 50%;
+    border: 1px solid gray;
+    padding: 4px;
+    cursor: pointer;
+}

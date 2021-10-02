@@ -9,54 +9,137 @@
         </button>
       </div>
       <div class="signinup" [class.content_left]="signup">
+
+
+
         <div class="signin">
           <h2 class="text-center">Sign In</h2>
-          <form>
+          <form [formGroup]="loginForm">
+
               <div class="group">
                 <label for="semail">Email</label>
-                <input type="email" id="semail" placeholder="Enter your Email" autocomplete="off" #thisin (focus)="focuss(thisin)" (blur)="blurr(thisin)">
+                <input 
+                  formControlName="email"
+                  type="email" 
+                  id="semail" 
+                  placeholder="Enter your Email" 
+                  autocomplete="off" 
+                  #thisin 
+                  (focus)="focuss(thisin)" 
+                  (blur)="blurr(thisin)"
+                >
                 <div class="back_input"></div>
               </div>
+
               <div class="group">
                 <label for="spassword">Password</label>
-                <input type="password" id="spassword" placeholder="Enter your Password" autocomplete="off" #pass (focus)="focuss(pass)" (blur)="blurr(pass)">
+                <input 
+                  formControlName="password"
+                  type="password" 
+                  id="spassword" 
+                  placeholder="Enter your Password" 
+                  autocomplete="off" 
+                  #pass 
+                  (focus)="focuss(pass)" 
+                  (blur)="blurr(pass)"
+                >
                 <div class="back_input"></div>
               </div>
               <div class="group mt-4">
-                <button type="button" #signin (mouseover)="focuss(signin)" (mouseout)="Blurr(signin)">Sign In</button>
+                <button
+                  [disabled]="loginForm?.invalid"
+                  type="button" 
+                  #signin  
+                  (mouseover)="focuss(signin)" 
+                  (mouseout)="Blurr(signin)"
+                  (click)="login()"
+                >
+                  Sign In
+                </button>
                 <div class="back_input"></div>
+              </div>
+              <div class="errors" style="width: 100%!important;" *ngIf="loginForm?.invalid">
+                <ul class="text-danger">
+                  <span *ngIf="lemail?.touched">
+                    <li *ngIf="lemail?.errors?.required">
+                      Email Field is Required
+                    </li>
+                    <li *ngIf="lemail?.errors?.email">
+                      Email is Wrong
+                    </li>
+                  </span>
+                  <span *ngIf="lpassword?.touched">
+                    <li *ngIf="lpassword?.errors?.required">
+                      Password Field is Required
+                    </li>
+                  </span>
+                </ul>
               </div>
           </form>
         </div>
-        <div class="signup">
+
+
+
+
+        <!-- <div class="signup">
           <h2 class="text-center">Sign Up</h2>
-          <form>
+          <form #signin="ngForm">
             <div class="group">
               <label for="name">Name</label>
-              <input type="name" id="name" placeholder="Enter your Name" autocomplete="off" #name (focus)="focuss(name)" (blur)="blurr(name)">
+              <input 
+                ngModel 
+                type="name" 
+                id="name" 
+                name="name" 
+                placeholder="Enter your Name" 
+                autocomplete="off" 
+                #name="ngModel" 
+                (focus)="focuss(name)" 
+                (blur)="blurr(name)"
+              >
               <div class="back_input"></div>
             </div>
             <div class="group">
               <label for="email">Email</label>
-              <input type="email" id="email" placeholder="Enter your Email" autocomplete="off" #email (focus)="focuss(email)" (blur)="blurr(email)">
+              <input required ngModel type="email" id="email" placeholder="Enter your Email" autocomplete="off" #email="ngModel" (focus)="focuss(email)" (blur)="blurr(email)">
               <div class="back_input"></div>
             </div>
             <div class="group">
               <label for="password">Password</label>
-              <input type="password" id="password" placeholder="Enter your Password" autocomplete="off" #password (focus)="focuss(password)" (blur)="blurr(password)">
+              <input ngModel type="password" name="password" id="password" placeholder="Enter your Password" autocomplete="off" #password="ngModel" (focus)="focuss(password)" (blur)="blurr(password)">
               <div class="back_input"></div>
             </div>
             <div class="group">
               <label for="pass2">Confirm Password</label>
-              <input type="password" id="pass2" placeholder="Confirm Password" autocomplete="off" #pass2 (focus)="focuss(pass2)" (blur)="blurr(pass2)">
+              <input ngModel required name="pass2" type="password" id="pass2" placeholder="Confirm Password" autocomplete="off" #pass2="ngModel" (focus)="focuss(pass2)" (blur)="blurr(pass2)">
               <div class="back_input"></div>
             </div>
+            <div class="group">
+              <label class="form-check-label">
+                <input type="radio" name="gender" value="male" checked>
+                Male
+              </label>
+              <label class="form-check-label">
+                <input type="radio" name="gender" value="female">
+                Female
+              </label>
+            </div>
+            <div class="errors" style="width: 100%!important;" *ngIf="true">
+              <ul class="text-danger">
+                <li *ngIf="email?.invalid">Email field is Required</li>
+                <li *ngIf="pass2?.errors?.required">Password Confirm</li>
+              </ul>
+            </div>
             <div class="group mt-4">
-              <button type="button" #dign (mouseover)="focuss(dign)" (mouseout)="Blurr(dign)">Create account</button>
+              <button type="button" (click)='SignIn(name)' #dign (mouseover)="focuss(dign)" (mouseout)="Blurr(dign)">Create account</button>
               <div class="back_input"></div>
             </div>
           </form>
-        </div>
+        </div> -->
+
+
+
+
       </div>
     </div>
   </div>
