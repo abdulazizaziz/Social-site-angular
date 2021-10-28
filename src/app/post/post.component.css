@@ -9,6 +9,8 @@
     display: flex;
     background-color: lightgray;
     border-radius: 10px 10px 0 0;
+    position: relative;
+    z-index: 1;
 }
 .posts .post .user .img{
     width: 60px;
@@ -28,33 +30,215 @@
 .posts .post .user .name h6 {
     font-size: 12px;
 }
+.button .detail {
+    background-color: whitesmoke;
+    border-radius: 4px;
+    padding: 5px;
+    position: absolute;
+    right: 13px;
+    top: 25px;
+    display: none;
+    overflow: hidden;
+    animation: detailanim .3s 1;
+    text-align: left;
+    z-index: 1;
+}
+@keyframes detailanim {
+    0%{
+        height: 0px;
+    }
+}
+.button .detail ul {
+    padding: 0;
+    margin: 0;
+}
+.button .detail ul li {
+    list-style-type: none;
+    padding: 2px 10px;
+    cursor: pointer;
+}
+.button .detail ul li:hover {
+    background-color: lightgray;
+}
+.button button {
+    position: absolute;
+    right: 15px;
+    top: 20px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+.button button .bt {
+    position: absolute;
+    transform: rotate(90deg);
+    font-size: 20px;
+    top: 0px;
+    right: 0px;
+}
+.button > button:focus > .detail{
+    display: block;
+}
 .posts .post .article {
     width: 100%;
     background-color: white;
     padding: 10px;
 }
-.posts .post .imgs {
+/* .posts .post .imgs {
+    width: 100%;
+} */
+.posts .post .imgs .item {
+    display: flex;
+    flex-flow: nowrap;
+    overflow-x: hidden;
+    position: relative;
+}
+.posts .post .imgs .item > .img {
+    width: 100%;
+    transition-duration: .3s;
+}
+.posts .post .imgs .item .buttons {
+    position: absolute;
+    z-index: 100;
+    margin-top: 45%;
     width: 100%;
 }
-.posts .post .imgs > img {
+.posts .post .imgs .item .buttons button {
+    position: absolute;
+    top: 0;
+}
+.posts .post .imgs .item .left {
+    left: 0;
+}
+.posts .post .imgs .item .right {
+    right: 0;
+}
+.posts .post .imgs .item .imgCount {
     width: 100%;
+    position: absolute;
+    bottom: 0;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+}
+.posts .post .imgs .item .imgCount .active {
+    background-color: #5280fd!important;
+}
+.posts .post .imgs .item .imgCount .count {
+    width: 10px;
+    height: 10px;
+    margin: 5px;
+    border-radius: 100%;
+    background-color: white;
+    border: 1px solid white;
+    cursor: pointer;
 }
 .posts .post .numberlc {
     width: 100%;
-    display: flex;
+    border-top: 1px solid lightgray;
 }
-.posts .post .numberlc > div {
-    padding: 10px 20px;
-    width: 50%;
+.posts .post .numberlc .row > div {
+    padding: 10px 0 10px 40px;
 }
 .posts .post .likecomment {
     width: 100%;
     text-align: center;
-    display: flex;
 }
-.posts .post .likecomment > div {
-    width: 50%;
+.posts .post .likecomment .like .liked {
+    font-weight: 700;
+}
+.posts .post .likecomment .row {
+    width: 100%;
+    margin: 0;
+}
+.posts .post .likecomment .row > a, .posts .post .likecomment .row > div {
+    /* width: 50%; */
     border: 1px solid gray;
     padding: 4px;
     cursor: pointer;
+    color: black;
 }
+
+.commentbox {
+    width: 100%;
+    background-color: lightgray;
+    border-radius: 5px 0;
+    padding: 5px;
+    margin: 5px 0;
+}
+.commentbox .user{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+.commentbox .user img {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    cursor: pointer;
+}
+.commentbox .user .name {
+    margin: 7px 0 0 10px;
+    cursor: pointer;
+}
+.commentbox .user .name span {
+    font-size: 10px;
+    font-weight: 400;
+}
+.commentbox .user > button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: tomato;
+}
+.commentbox .user > button:hover {
+    color: red;
+}
+.commentbox hr {
+    margin: 5px 0;
+    z-index: -1;
+}
+.commentbox .text {
+    padding: 10px 0 0 20px;
+    margin: 0!important;
+    font-weight: 600;
+}
+
+.editimgs img {
+    width: 80px;
+    margin: 0 10px 10px 0;
+}
+
+
+section {
+    display: table;
+  }
+  
+  .example-label {
+    display: table-cell;
+    font-size: 14px;
+    margin-left: 8px;
+    min-width: 120px;
+  }
+  
+  .example-button-row {
+    display: table-cell;
+    width: 490px;
+  }
+  
+  .example-button-row .mat-button-base {
+    margin: 8px 8px 8px 0;
+  }
+  
+  .example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+  }

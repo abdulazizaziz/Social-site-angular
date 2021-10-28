@@ -1,51 +1,251 @@
-<div class="posts">
-    <div class="post">
+
+
+<!-- This is Only for main or Home page -->
+<div class="posts" *ngIf="!profile && !saved">
+    <div class="post" *ngFor="let post of auth.posts">
       <div class="user">
-        <div class="img" style="background-image: url('http://localhost:8000/media/af_aziz.png');"></div>
+        <a (click)="auth.navigate([post.user.username])">
+          <div class="img" style="background-image: url('http://localhost:8000{{post.user.img}}');"></div>
+        </a>
         <div class="name">
-          <h1>Abdulaziz</h1>
-          <h6>3 Days ago</h6>
+          <a (click)="auth.navigate([post.user.username])">
+            <h1>{{post.user.name}}</h1>
+          </a>
+          <h6>{{post.added_on}}</h6>
+        </div>
+        <div class="button">
+          <button>
+            <span class="bt">...</span>
+            <div class="detail">
+              <ul>
+                <li (click)='save(post)'>
+                  <span *ngIf="!post?.postsaved?.includes(auth?.user?.user_id)">Save</span>
+                  <span *ngIf="post?.postsaved?.includes(auth?.user?.user_id)" style="font-weight: 600;">Unsaved</span>
+                </li>
+                <li *ngIf="post?.user?.id == auth?.user?.user_id" data-bs-toggle="modal" data-bs-target="#edit" (click)="Editpost(post)">Edit</li>
+                <li (click)="deletepost(post, post.id)" *ngIf="post?.user?.id == auth?.user?.user_id">Delete</li>
+              </ul>
+            </div>
+          </button>
         </div>
       </div>
-      <div class="article">
+      <div class="article" *ngIf="post.article">
        <p>
-         Lorem ipsum, dolor sit amet consectetur 
-         adipisicing elit. Saepe vitae molestiae 
-         quia omnis distinctio voluptatem, voluptate 
-         facilis sit quo porro earum officia culpa 
-         alias ullam in eligendi aliquam itaque vel!
+         {{ post.article }}
        </p>
      </div>
      <div class="imgs">
-       <img src="http://localhost:8000/media/af_aziz.png">
+      <div class="item">
+        <div class="buttons">
+          <button type="button" class="btn btn-dark left" [style.display]="'none'" (click)="left($event)"><-</button>
+          <button type="button" class="btn btn-dark right" [style.display]="(post?.imgs?.length <= 1)? 'none' : 'block'" (click)="right($event)">-></button>
+        </div>
+        <div class="imgCount" [style.display]="(post?.imgs?.length <= 1)? 'none' : 'flex'">
+          <div 
+            class="count"
+            (click)="changeimg($event ,i)"
+           *ngFor="let img of post.imgs; let i = index"
+            [class.active]="(img == post.imgs[0])? 'active' : ''">
+          </div>
+        </div>
+        <img class="img" src='http://localhost:8000{{ img }}' *ngFor="let img of post.imgs" style="transform: translateX(0);">
+      </div>
      </div>
+
      <div class="numberlc">
-       <div class="like">2.3M likes</div>
-       <div class="comment">260k comments</div>
+       <div class="row">
+         <div class="like col-6">{{ post?.postlikes?.length }} likes</div>
+         <div class="comment col-6">{{post?.comment?.length}} comments</div>
+        </div>
      </div>
+
      <div class="likecomment">
-       <div class="like">Like</div>
-       <div class="comment">Comment</div>
+       <div class="row col-12">
+         <div class="like col-6" (click)="like(post)">
+           <span *ngIf="!post.postlikes.includes(auth?.user?.user_id)">Like</span>
+           <span *ngIf="post.postlikes.includes(auth?.user?.user_id)" class="liked">Liked</span>
+         </div>
+         <div (click)="openModel(post)" class="comment col-6" data-bs-toggle="modal" data-bs-target="#modelId">Comment</div>
+        </div>
      </div>
+
     </div>
-    <div class="post">
-     <div class="user">
-       <div class="img" style="background-image: url('http://localhost:8000/media/af_aziz.png');"></div>
-       <div class="name">
-         <h1>Abdulaziz</h1>
-         <h6>3 Days ago</h6>
-       </div>
-     </div>
-     <div class="imgs">
-        <img src="http://localhost:8000/media/IMG_0025.PNG">
-      </div>
-      <div class="numberlc">
-        <div class="like">2.3M likes</div>
-        <div class="comment">260k comments</div>
-      </div>
-      <div class="likecomment">
-        <div class="like">Like</div>
-        <div class="comment">Comment</div>
+
+    <div class="wrong">
+      <div class="alert alert-danger" *ngIf="wrong">
+        Some thing went Wrong!
       </div>
     </div>
-   </div>
+
+</div>
+
+
+
+<!-- This is for profile and saved page -->
+<div class="posts" *ngIf="profile || saved">
+  <div class="post" *ngFor="let post of posts">
+    <div class="user">
+      <a (click)="auth.navigate([post.user.username])">
+        <div class="img" style="background-image: url('http://localhost:8000{{post.user.img}}');"></div>
+      </a>
+      <div class="name">
+        <a (click)="auth.navigate([post.user.username])">
+          <h1>{{post.user.name}}</h1>
+        </a>
+        <h6>{{post.added_on}}</h6>
+      </div>
+      <div class="button">
+        <button>
+          <span class="bt">...</span>
+          <div class="detail">
+            <ul>
+              <li (click)='save(post)'>
+                <span *ngIf="!post?.postsaved?.includes(auth?.user?.user_id)">Save</span>
+                <span *ngIf="post?.postsaved?.includes(auth?.user?.user_id)" style="font-weight: 600;">Unsaved</span>
+              </li>
+              <li *ngIf="post?.user?.id == auth?.user?.user_id" (click)="Editpost(post)" data-bs-toggle="modal" data-bs-target="#edit">Edit</li>
+              <li (click)="deletepost(post, post.id)" *ngIf="post?.user?.id == auth?.user?.user_id">Delete</li>
+            </ul>
+          </div>
+        </button>
+      </div>
+    </div>
+    <div class="article" *ngIf="post.article">
+      <p>
+        {{ post.article }}
+      </p>
+    </div>
+    <div class="imgs">
+      <div class="item">
+      <div class="buttons">
+        <button type="button" class="btn btn-dark left" [style.display]="'none'" (click)="left($event)"><-</button>
+        <button type="button" class="btn btn-dark right" [style.display]="(post?.imgs?.length <= 1)? 'none' : 'block'" (click)="right($event)">-></button>
+      </div>
+      <div class="imgCount" [style.display]="(post?.imgs?.length <= 1)? 'none' : 'flex'">
+        <div 
+          class="count"
+          (click)="changeimg($event ,i)"
+          *ngFor="let img of post.imgs; let i = index"
+          [class.active]="(img == post.imgs[0])? 'active' : ''">
+        </div>
+      </div>
+        <img class="img" src='http://localhost:8000{{ img }}' *ngFor="let img of post.imgs">
+      </div>
+    </div>
+    <div class="numberlc">
+      <div class="row">
+        <div class="like col-6">{{ post?.postlikes?.length }} likes</div>
+        <div class="comment col-6">{{post?.comment?.length}} comments</div>
+      </div>
+    </div>
+    <div class="likecomment">
+      <div class="row col-12">
+        <div class="like col-6" (click)="like(post)">
+          <span *ngIf="!post.postlikes.includes(auth?.user?.user_id)">Like</span>
+          <span *ngIf="post.postlikes.includes(auth?.user?.user_id)" class="liked">Liked</span>
+        </div>
+        <div (click)="openModel(post)" class="comment col-6" data-bs-toggle="modal" data-bs-target="#modelId">Comment</div>
+      </div>
+    </div>
+</div>
+
+
+    <div class="wrong">
+      <div class="alert alert-danger" *ngIf="wrong">
+        Some thing went Wrong!
+      </div>
+    </div>
+
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" #model id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Comments</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="overflow: auto; max-height: 70vh;">
+        <div class="commentbox" *ngFor="let item of comments">
+          <div class="user">
+            <img src="http://localhost:8000{{ item?.user?.img }}" (click)="changeurl(model, item?.user?.username)">
+            <h6 class="name" (click)="changeurl(model, item?.user?.username)">
+              {{ item?.user?.name }} <br>
+              <span> {{ item?.added_on }} ago </span>
+            </h6>
+            <div class="button" *ngIf="item?.user?.id == auth?.user?.user_id">
+              <button>
+                <span class="bt">...</span>
+                <div class="detail">
+                  <ul>
+                    <li (click)="edit($event)">Edit</li>
+                    <li (click)="deletecomment(item)">Delete</li>
+                  </ul>
+                </div>
+              </button>
+            </div>
+          </div>
+          <hr>
+          <div class="text">
+            <p> {{ item?.comment }} </p>
+          </div>
+          <div class="edit px-4" style="display: none;">
+            <form class="col-12">
+              <div class="row">
+                <div class="form-group col-10">
+                  <input id="editcomment" #Edit [value]="item?.comment" type="text" class="form-control form-control-sm">
+                </div>
+                <button class="btn btn-outline-success col-2 btn-sm" [disabled]="!Edit?.value?.length" (click)="updated(item, Edit)">Update</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="alert alert-warning" *ngIf="!comments?.length">No comments yet</div>
+      </div>
+      <div class="modal-footer">
+        <form class="col-12">
+          <div class="row">
+            <div class="form-group col-10">
+              <input #comment type="text" class="form-control" placeholder="Leave comment" (keyup)="log(comment)">
+            </div>
+            <button class="btn btn-outline-dark col-2" [disabled]="comment.value.length < 4" (click)="addcomment(comment)">Send</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Post</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="editimgs">
+          <img src="http://localhost:8000{{ item }}" *ngFor="let item of editpost?.imgs">
+        </div>
+        <div class="alert alert-dark" *ngIf="!editpost?.imgs?.length">No Image</div>
+        <div class="article">
+          <form>
+            <div class="form-group">
+              <textarea #article class="form-control" rows="3" placeholder="Article">{{ editpost?.article }}</textarea>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="updatepost(article)" data-bs-dismiss="modal" aria-label="Close">Update</button>
+      </div>
+    </div>
+  </div>
+</div>

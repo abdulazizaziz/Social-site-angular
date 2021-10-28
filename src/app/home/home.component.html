@@ -1,7 +1,47 @@
 <div class="container text-dark home">
   <div class="col-4 bg-info suggest d-none d-md-block">Suggest</div>
   <div class="col-12 col-md-8">
+    <div class="upload">
+      <form>
+        <textarea placeholder="What is Happening ?" cols="30" rows="2" #text></textarea>
+        <div class="imgs">
+          <img [src]="img" *ngFor="let img of imgs">
+          <label for="img" class="btn">add</label>
+        </div>
+        <button class="button btn btn-dark" (click)="upload(text)" [disabled]="!text.value && !imgs.length">Post</button>
+      </form>
+    </div>
     <post></post>
   </div>
 
+</div>
+
+
+<div class="image-cropping" [style.display]="cropper? 'block': 'none'">
+  <div class="content bg-dark">
+    <div class="container text-center bg-dark" style="height: 90%">
+
+      <div class="col-md-12">
+        <input type="file" class="d-none" id="img" (change)="onFileChange($event)" #image />
+      </div>
+
+      <div class="m-auto crop" style="height: 100%; width: 40%;">
+        <image-cropper
+          [imageChangedEvent]="imgChangeEvt" 
+          [maintainAspectRatio]="true" 
+          [aspectRatio]="4 / 4"
+          [resizeToWidth]="1000" 
+          format="png" 
+          (imageCropped)="cropImg($event)" 
+          (imageLoaded)="imgLoad()"
+          (cropperReady)="initCropper()" 
+          (loadImageFailed)="imgFailed()">
+        </image-cropper>
+      </div>
+    </div>
+    <div class="modal-footer bg-dark">
+      <button type="button" class="btn btn-secondary" (click)="closecropper(image)">Close</button>
+      <button type="button" class="btn btn-primary" (click)="selectimg(image)">Select</button>
+    </div>
+  </div>
 </div>

@@ -5,6 +5,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+// For MDB Angular Free
+// import { NavbarModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md'
 
 @Component({
   selector: 'app-login',

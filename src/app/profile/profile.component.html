@@ -1,43 +1,116 @@
 <div class="container">
     <div class="profile col-12 col-lg-5">
-        <div class="img" style="background-image: url('http://localhost:8000{{profile.img}}');"></div>
-        <div class="name">{{ auth.user.name }}</div>
+        <div class="img" style="background-image: url('{{profileimg}}');"></div>
+        <div class="name">{{ profile?.name }}</div>
+        <div class="follow">
+            <div>
+                <a data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <h5>{{ followers?.length }} <span>followers</span></h5>
+                </a>
+            </div>
+            <div>
+                <a data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <h5>{{ following?.length }} <span>following</span></h5>
+                </a>
+            </div>
+        </div>
+        <button
+            (click)="follow()"
+            class="followbtn btn" 
+            [class.btn-dark]='!currrentUser.following.includes(profile.id)'
+            [class.btn-outline-dark]='currrentUser.following.includes(profile.id)' 
+            *ngIf="auth.user.username != username">
+            <span *ngIf="!currrentUser.following.includes(profile.id)">Follow</span>
+            <span *ngIf="currrentUser.following.includes(profile.id)">Following</span>
+        </button>
         <div class="about mt-2 p-3">
-            {{profile.about}}
+            {{profile?.about}}
         </div>
         <div class="more">
             <h4>Detail</h4>
             <div class="usename">
-                Username: {{ auth.user.username }}
+                Username: {{ profile?.username }}
             </div>
             <div class="live">
-                Live in {{ profile.live_city }}, {{ profile.live_country }}
+                Live in {{ profile?.live_city }}, {{ profile?.live_country }}
             </div>
             <div class="from">
-                From {{profile.country}}
+                From {{profile?.country}}
             </div>
             <div class="age">
-                Age {{profile.age}}
+                Age {{profile?.age}}
             </div>
             <div class="number">
-                Contact Number 0{{profile.number}}
+                Contact Number 0{{profile?.number}}
             </div>
             <div class="single">
-                <span *ngIf="profile.single"> Single </span>
-                <span *ngIf="!profile.single"> Married </span>
+                <span *ngIf="profile?.single"> Single </span>
+                <span *ngIf="!profile?.single"> Married </span>
             </div>
             <div class="education">
-                {{ profile.education }}
+                {{ profile?.education }}
             </div>
             <div style="background-color: transparent; border: none; padding: 0;" *ngIf="auth.user.username == username">
-                <button class="btn btn-dark col-12">Edit Profile</button>
+                <button class="btn btn-dark col-12" (click)="auth.navigate(['setting'])">Edit Profile</button>
             </div>
         </div>
     </div>
     <div class="col-12 col-lg-7 posts">
         <div class="title">
-            {{ auth.user.name }} Posts
+            {{ profile?.name }} Posts
         </div>
-        <post></post>
+        <post profile="{{profileuser}}"></post>
     </div>
+</div>
+
+<div class="loading" *ngIf="loader">
+    <div>
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade col-2" #model id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 300px!important; max-height: 90vh; overflow: auto; margin: auto; margin-top: 10px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Following</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="following" *ngFor="let item of following">
+                    <div class="image" style="background-image: url('http://localhost:8000{{item.img}}')" (click)="changeurl(model, item.username)"></div>
+                    <div class="detail" (click)="changeurl(model, item.username)">
+                        <h6 class="name">{{item.name}}</h6>
+                        <h6>{{item.username}}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" style="width: 300px!important; max-height: 90vh; overflow: auto; margin: auto; margin-top: 10px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Follower</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="following" *ngFor="let item of followers">
+            <div class="image" style="background-image: url('http://localhost:8000{{item.img}}')" (click)="changeurl(model, item.username)"></div>
+            <div class="detail" (click)="changeurl(model, item.username)">
+                <h6 class="name">{{item.name}}</h6>
+                <h6>{{item.username}}</h6>
+            </div>
+        </div>
+    </div>
+    </div>
+  </div>
 </div>

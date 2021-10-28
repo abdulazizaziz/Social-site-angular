@@ -20,6 +20,19 @@
     text-align: center;
     font-size: 35px;
 }
+.profile .follow {
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+.profile .follow div {
+    margin: 0 20px;
+    cursor: pointer;
+}
+.profile .follow div span {
+    font-weight: 300;
+}
 .profile .more {
     width: 100%;
     border-top: 1px solid lightgray;
@@ -47,4 +60,64 @@
     .posts {
         padding: 0!important;
     }
+}
+
+
+.loading {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1006;
+    background-color: rgba(0,0,0,0.5);
+}
+.loading > div {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.loading > div > div {
+    width: 15em;
+    height: 15em;
+}
+
+.following {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid lightgray;
+}
+.following .image {
+    width: 50px;
+    height: 50px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 100%;
+    cursor: pointer;
+}
+.following .detail {
+    padding-left: 10px;
+    cursor: pointer;
+}
+.following .detail h6 {
+    padding: 0!important;
+    margin: 0!important;
+    font-weight: 300;
+}
+.following .detail .name {
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.followbtn {
+    width: 80%;
+    padding: 5px 10px;
+    margin: 0 10%;
+    border-radius: 40px;
 }

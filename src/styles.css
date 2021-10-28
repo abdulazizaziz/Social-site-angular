@@ -2,18 +2,30 @@
 *{
     margin: 0;
     padding: 0;
+    color: white!important;
 }
 body{
     overflow-y: scroll;
 }
 *::-webkit-scrollbar{
-    width: 5px;
+    width: 8px;
+    height: 8px;
 }
 *::-webkit-scrollbar-track{
-    width: 5px;
+    width: 8px;
+    height: 8px;
     background-color: lightgray;
 }
 *::-webkit-scrollbar-thumb{
-    width: 5px;
+    width: 8px;
+    height: 8px;
     background-color: gray;
 }
+a{
+    text-decoration: none!important;
+    cursor: pointer!important;
+}
+html, body { height: 100%; }
+body { 
+    background-color: #313131!important;
+    margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

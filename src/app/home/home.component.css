@@ -3,3 +3,68 @@
     right: 0;
     z-index: -1;
 }
+.upload {
+    width: 100%;
+    background-color: #212529;
+    border-radius: 0 0 10px 10px;
+}
+.upload form .button {
+    border-radius: 0 0 10px 10px;
+    width: 100%;
+    background-color: gray;
+}
+.upload form textarea {
+    border: none;
+    width: 100%;
+    padding: 10px;
+    background-color: #212529;
+}
+.upload form textarea:focus {
+    outline: none!important;
+}
+.upload .imgs {
+    width: 100%;
+    border-top: 1px solid lightgray;
+    padding: 10px;
+}
+.upload .imgs img {
+    width: 68px;
+    height: 68px;
+    margin: 0 10px 0 0;
+}
+.upload .imgs .btn {
+    padding: 20px;
+    border: 2px solid gray;
+}
+.image-cropping{
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.3);
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    animation: model .5s 1;
+}
+@keyframes model {
+    0% {
+        /* width: 0; */
+        height: 0;
+        opacity: 0;
+    }
+}
+.image-cropping > * {
+    background-color: black!important;
+}
+.image-cropping .content {
+    width: 80%;
+    height: 550px;
+    background-color: white;
+    border-radius: 10px 10px 0 0;
+    border: 1px solid lightgray;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}

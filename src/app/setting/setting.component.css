@@ -1,0 +1,63 @@
+.setting {
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    display: flex;
+    flex-wrap: wrap;
+}
+.setting .photo {
+    padding: 10px;
+    border-right: 1px solid lightgray;
+}
+.setting .photo .nophoto {
+    text-align: center;
+    padding: 100px 0;
+    border: 1px solid lightgray;
+}
+.setting .photo img {
+    width: 100%;
+}
+.setting .photo label {
+    width: 100%;
+    margin-top: 10px;
+    padding: 5px;
+    background-color: gray;
+    color: white;
+    border-radius: 2px;
+}
+.setting .edit {
+    padding: 10px;
+}
+.setting .edit form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.image-cropping{
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.3);
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    animation: model .5s 1;
+}
+@keyframes model {
+    0% {
+        height: 0;
+        opacity: 0;
+    }
+}
+.image-cropping .content {
+    width: 80%;
+    height: 550px;
+    background-color: white;
+    border-radius: 10px 10px 0 0;
+    border: 1px solid lightgray;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
